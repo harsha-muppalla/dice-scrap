@@ -25,9 +25,9 @@ export function JobsPage({user,onLogout}) {
     const fetchInitialData = async () => {
       try {
         const [jobsResponse, locationsResponse, statusResponse] = await Promise.all([
-          fetch("http://localhost:4000/api/jobs"),
-          fetch("http://localhost:4000/api/location"),
-          fetch("http://localhost:4000/api/scrape-status")
+          fetch("https://dice-scrap-backend.onrender.com/api/jobs"),
+          fetch("https://dice-scrap-backend.onrender.com/api/location"),
+          fetch("https://dice-scrap-backend.onrender.com/api/scrape-status")
         ]);
         const jobsData = await jobsResponse.json();
         const locationsData = await locationsResponse.json();
@@ -56,7 +56,7 @@ export function JobsPage({user,onLogout}) {
     if (searchTerm.length > 1) {
       const fetchSuggestions = async () => {
         try {
-          const response = await fetch(`http://localhost:4000/api/suggestions?query=${searchTerm}`);
+          const response = await fetch(`https://dice-scrap-backend.onrender.com/api/suggestions?query=${searchTerm}`);
           const data = await response.json();
           setSuggestions(data);
         } catch (error) { console.error("Failed to fetch suggestions:", error); }
@@ -72,7 +72,7 @@ export function JobsPage({user,onLogout}) {
       setIsScraping(true);
       setScrapeStatus({ status: 'running' });
       try {
-          const response = await fetch("http://localhost:4000/api/run-scrape", { method: 'POST' });
+          const response = await fetch("https://dice-scrap-backend.onrender.com/api/run-scrape", { method: 'POST' });
           const data = await response.json();
           if (!response.ok) {
               alert(data.message);
