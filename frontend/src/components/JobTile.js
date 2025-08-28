@@ -1,5 +1,5 @@
 import "../App.js"
-import 'C:/react/leaen/react1/job_scrapper/frontend/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 export function JobTile({job}){
     return (
         <div class="job-card p-3 mx-5" >

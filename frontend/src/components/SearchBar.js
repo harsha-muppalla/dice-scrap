@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'C:/react/leaen/react1/job_scrapper/frontend/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function SearchBar({ searchTerm, onSearchChange, suggestions, onSearchSubmit }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
