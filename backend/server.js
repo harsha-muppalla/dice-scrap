@@ -3,14 +3,57 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cron = require("node-cron");
 const { spawn } = require("child_process"); 
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const jobs = require("./model/jobs");
+const User = require("./model/user");
 
 const app = express();
+app.use(express.json()); 
 app.use(cors());
 mongoose.set('strictQuery', true);
 mongoose.connect("mongodb+srv://test:12345@cluster0.ztaa9f8.mongodb.net/jobsin")
   .then(() => console.log("DB connected"))
   .catch(err => console.log("Unable to connect", err));
+//user reg
+app.post("/api/register", async (req, res) => {
+  try {
+    const { name, username, password } = req.body;
+    if (!name || !username || !password) {
+      return res.status(400).json({ message: "Please enter all fields." });
+    }
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: "Username already exists." });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newUser = new User({ name, username, password: hashedPassword });
+    await newUser.save();
+    res.status(201).json({ message: "User created successfully." });
+  } catch (error) {
+    res.status(500).json({ message: "Server error." });
+  }
+});
+//user login
+app.post("/api/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials." });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials." });
+    }
+    const token = jwt.sign({ id: user._id, name: user.name }, "your_jwt_secret", { expiresIn: '1h' });
+    res.json({ token, user: { id: user._id, name: user.name } });
+  } catch (error) {
+    res.status(500).json({ message: "Server error." });
+  }
+});
+
 
 //web scrapper handling
 const ScrapeLogSchema = new mongoose.Schema({

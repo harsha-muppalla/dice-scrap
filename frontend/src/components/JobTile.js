@@ -4,7 +4,7 @@ export function JobTile({job}){
     return (
         <div class="job-card p-3 mx-5" >
             <div class="d-flex flex-row p-3">
-            <a href={"https://www.dice.com" + job.company_link}><img src={job.compnay_logo}  class="shadow-dark imgg"/></a>
+            <a href={"https://www.dice.com" + job.company_link}><img src={job.company_logo}  class="shadow-dark imgg"/></a>
             <a class="pt-3 px-2" href={"https://www.dice.com" + job.company_link}><h1 class="company " >{job.company}</h1></a>
             <a class="ms-auto  py-3 applybutton"href={job.job_link}>Apply</a>
             </div>
