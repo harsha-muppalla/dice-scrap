@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+dice scrapping:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+since dice.com is a dynamic site i used selenium  and beautiful soup to scrape it the selenium navigates through dice.com has only 25 jobs per page and soup parses through html of the pages and using the css selectors i scraped company logo,name,company link,job name,link for the job,salary,type of job,location and salary ,some of them as css selectors that are identifiable and some were not to scrape the company name  i scraped using the a which company was in and while trying to scrape the job location there was no common seletor and i tried with the entire class name which matched with posted date also and a dot so i scraped by taking every first item in the list is job location and third is posted date and pytz lib i saved the scraped time and py mongoose everything is stored in mongo db and to take care of dupliactes i used the href of job link as unique element and everytime when we click update jobs it scrape the first 50 jobs and if previous jobs are not existing in those 50 it will think as job is removed from dice and using href value it will take care of duplicates 
 
-## Available Scripts
+Backend:
 
-In the project directory, you can run:
+server.js
+this is main file of backend it has all the api calls 
 
-### `npm start`
+/api/jobs: Fetches all jobs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+/api/location: Fetches  unique list of all job locations.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+/api/suggestions: Provides autocomplete suggestions for the search bar.
 
-### `npm test`
+/api/register & /api/login: user account creation and login.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+/api/run-scrape: Manually trigger for scraper.
 
-### `npm run build`
+/api/scrape-status: Checks scraper  last run.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+and using cron created a schedule to automate scrapping everyday
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+model(user.js & jobs.js ):
+  stores the schema of user collection and jobs collection 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Frontend:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+login page.js:
+  this page handles the login and user account creation by using login and register to get and update user collection 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+jobs-page.js:
+it handles the use states of all the filtering to filter remote jobs or full time job or contract job and location based filtering and the no of days ago slider and calls the jobs and location for the frontend job tiles and renders and all the main page uis 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+filter.js: 
+ui handiling for all the filter components 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+search bar.js:
+ui handling for the serach bar its a autocomplete search that gives suggestion to match with either job title or company name 
 
-## Learn More
+jobtile:
+ui handling to show all jobs displays all the job api call info 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+util.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+the file handles the entire filtering logics since it a small db we can handle these logics in frontend after fetching the whole data for contract,fulltime and remote it goes the boolean if its true then it matches job type and job location and displays 
 
-### Code Splitting
+for days posted slider  we kept a min of 1 and max of 30 by using the number we stop at it does posted within filtering 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+and for search it does string matching to handle the error of wrong spelling the autocomplete search bar takes care of it 
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
