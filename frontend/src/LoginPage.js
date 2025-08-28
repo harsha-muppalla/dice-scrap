@@ -11,7 +11,7 @@ export function LoginPage({ onLoginSuccess }) {
     e.preventDefault();
     setError('');
 
-    const url = isLogin ? "http://localhost:4000/api/login" : "http://localhost:4000/api/register";
+    const url = isLogin ? "https://dice-scrap-backend.onrender.com/api/login" : "https://dice-scrap-backend.onrender.com/api/register";
     const payload = isLogin ? { username, password } : { name, username, password };
 
     try {
