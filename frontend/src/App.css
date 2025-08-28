@@ -1,0 +1,299 @@
+
+a {
+  text-decoration: none;
+}
+
+h1{
+  color:#060928;
+}
+
+h2{
+  color:#fff;
+}
+
+.job-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: transform 0.2s;
+}
+
+
+.job{
+  text-align:start;
+  font-size:20px ;
+}
+
+.jobd{
+  text-align:start;;
+  font-size:15px ;
+  border-radius:5px;
+  background-color:#d8d9da ;
+}
+
+.jobdd{
+  text-align:start;;
+  font-size:15px ;
+  border-radius:5px;
+}
+.imgg{
+  height:50px;
+  width:80px;
+  object-fit: contain;
+}
+
+.company{
+  font-size:20px;
+}
+
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #f4f7f6;
+  margin-left:0;
+  margin-right:0;
+}
+
+.jobs-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 16px;
+}
+
+/* filter css  */
+
+.fil{
+  background-color: #060928;
+  position:sticky;
+
+}
+
+.navt{
+  background-color:#d8d3d3;
+  border-radius:5px;
+  color:#040f4c;
+  height:40px;
+}
+
+.applybutton{
+  background-color:#060928;
+  color:#d8d3d3;
+  border-width:0px;
+  border-radius:30px;
+  width:120px;
+}
+
+
+
+/* check boxes   */
+
+
+
+
+.card {
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #020209;
+    background-clip: border-box;
+    border-radius: 0;
+    border-radius:10px;
+}
+
+label.check {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 8px 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label.check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+h4{
+  color:#d8d3d3;
+}
+label.check span {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 2px solid #d8d3d3;
+  background-color: transparent;
+  color: #d8d3d3;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: all 0.2s ease-in-out;
+}
+
+label.check input:checked + span {
+  border-color: #4f46e5;
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+label.check:hover span {
+  border-color: #6366f1;
+}
+/* search */
+.search-container {
+  position: relative;
+  margin-bottom: 20px;
+  left:25%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.suggestions-list li {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
+
+
+/*dropdown*/
+
+.multiselect-container {
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.multiselect-button {
+  width: 100%;
+  padding: 5px 12px;
+  background-color: transparent;
+  border: 1px solid #d8d3d3;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px; 
+  box-sizing: border-box;
+}
+
+.multiselect-tags-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 5px; 
+  flex-grow: 1;
+}
+
+.multiselect-tag {
+  display: flex;
+  align-items: center;
+  background-color: #4f46e5; 
+  color: #ffffff; 
+  padding: 4px 8px;
+  border-radius: 12px; 
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.multiselect-tag-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 6px;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.multiselect-tag-cancel:hover {
+  opacity: 0.8;
+}
+
+.multiselect-placeholder {
+  color: #d8d3d3; 
+  align-self: center;
+}
+
+.multiselect-arrow {
+  font-size: 0.7rem;
+  margin-left: 10px;
+  color: #d8d3d3;
+}
+
+.multiselect-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #060928;
+  border: 1px solid #d8d3d3;
+  color:#fff;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.multiselect-dropdown .check {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box; 
+  cursor: pointer;
+}
+
+.multiselect-dropdown .check:hover {
+  background-color: #1e293b;
+}
+
+.stick{
+  position: sticky; 
+  top: 250px; 
+  align-self: flex-start; 
+  z-index: 10;
+}
+
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: #000000; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #e5e7eb;
+}
+
